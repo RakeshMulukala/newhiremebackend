@@ -8,7 +8,7 @@ from hiremebackend.auth import get_current_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-@router.post("/", response_model=schemas.UserBasee)
+@router.post("/", response_model=schemas.UserBase)
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     if db.query(models.User).filter(models.User.email == user.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
