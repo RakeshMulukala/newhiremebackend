@@ -10,7 +10,7 @@ router = APIRouter(prefix="/users", tags=["Users"])
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-@router.post("/", response_model=schemas.UserOut)
+@router.post("/", response_model=schemas.UserBase)
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     if db.query(models.User).filter(models.User.email == user.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -21,10 +21,10 @@ def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return new_user
 
-@router.get("/me", response_model=schemas.UserOut)
+@router.get("/me", response_model=schemas.UserBase)
 def get_profile(current_user: models.User = Depends(get_current_user)):
     return current_user
 
-@router.get("/", response_model=list[schemas.UserOut])
+@router.get("/", response_model=list[schemas.UserBase])
 def get_all_users(db: Session = Depends(get_db)):
     return db.query(models.User).all()
