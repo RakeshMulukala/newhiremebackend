@@ -64,3 +64,14 @@ class Token(BaseModel):
     access_token: str
     token_type: str
         
+class RecipeCreate(BaseModel):
+    title: str
+    video_url: str
+    description: str | None = None
+
+class RecipeOut(RecipeCreate):
+    id: int
+    owner_id: int
+
+    class Config:
+        orm_mode = True

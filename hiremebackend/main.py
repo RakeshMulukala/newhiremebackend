@@ -55,7 +55,10 @@ app.include_router(coupons.router, prefix="/coupons", tags=["Coupons"])
 app.include_router(recipes.router, prefix="/recipes", tags=["Recipes"])
 app.include_router(notifications.router, prefix="/notifications", tags=["Notifications"])
 
+
 # ✅ Root test
 @app.get("/")
 async def root(request: Request):
     return {"message": "Hire Me API is live and connected!"}
+
+
