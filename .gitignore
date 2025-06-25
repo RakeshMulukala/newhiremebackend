@@ -1,0 +1,27 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.log
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Docker
+*.pid
+*.sock
+*.pid.lock
