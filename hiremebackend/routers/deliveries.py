@@ -6,7 +6,7 @@ from hiremebackend.auth import get_current_user
 
 router = APIRouter(prefix="/deliveries", tags=["Deliveries"])
 
-@router.post("/", response_model=schemas.DeliveryOut)
+@router.post("/", response_model=schemas.DeliveryBase)
 def create_delivery(delivery: schemas.DeliveryCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     new_delivery = models.Delivery(**delivery.dict(), user_id=current_user.id)
     db.add(new_delivery)
@@ -14,7 +14,7 @@ def create_delivery(delivery: schemas.DeliveryCreate, db: Session = Depends(get_
     db.refresh(new_delivery)
     return new_delivery
 
-@router.get("/", response_model=list[schemas.DeliveryOut])
+@router.get("/", response_model=list[schemas.DeliveryBase])
 def list_deliveries(db: Session = Depends(get_db)):
     return db.query(models.Delivery).all()
 
