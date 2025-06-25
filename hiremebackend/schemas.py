@@ -75,3 +75,16 @@ class RecipeOut(RecipeCreate):
 
     class Config:
         orm_mode = True
+        
+        class NotificationCreate(BaseModel):
+    message: str
+
+# For returning a notification to the frontend
+class NotificationOut(NotificationCreate):
+    id: int
+    user_id: int
+    is_read: bool
+    timestamp: datetime
+
+    class Config:
+        orm_mode = True
