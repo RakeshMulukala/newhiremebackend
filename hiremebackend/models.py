@@ -10,7 +10,9 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
-    password = Column(String)  # ✅ renamed from hashed_password for consistency
+    password = Column(String) 
+    hashed_password = Column(String)# ✅ renamed from hashed_password for consistency
+    
     is_rider = Column(Boolean, default=False)  # ✅ optional: to track riders
 
     deliveries = relationship("Delivery", back_populates="user")

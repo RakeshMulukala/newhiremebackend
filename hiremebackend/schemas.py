@@ -73,10 +73,10 @@ class RecipeOut(RecipeCreate):
     id: int
     owner_id: int
 
-    class Config:
-        orm_mode = True
+class Config:
+    orm_mode = True
         
-        class NotificationCreate(BaseModel):
+class NotificationCreate(BaseModel):
     message: str
 
 # For returning a notification to the frontend
